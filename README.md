@@ -17,7 +17,7 @@ https://www.rust-lang.org/tools/install
 
 https://doc.rust-lang.org/book/ch01-01-installation.html
 
-# Compiling Code
+# Compiling the code
 On a local PC, one may follow these instructions
 
 https://doc.rust-lang.org/book/ch01-02-hello-world.html
