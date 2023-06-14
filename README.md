@@ -28,3 +28,7 @@ https://doc.rust-lang.org/book/ch01-03-hello-cargo.html
 For more information visit the following URL.
 
 https://www.rust-lang.org/learn
+
+# Google Rust course
+
+https://google.github.io/comprehensive-rust/
