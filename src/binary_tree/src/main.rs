@@ -124,7 +124,7 @@ impl<T: fmt::Display + PartialOrd + Clone> BinaryTree<T> {
         println!();
     }
 
-    //depth first search (bfs)
+    //depth first search (dfs)
     fn dfs(&self) {
         self.dfs_recursive(self.root.as_ref().map(Rc::clone));
         println!();
