@@ -138,6 +138,38 @@ impl<T: fmt::Display + PartialOrd + Clone> BinaryTree<T> {
             self.dfs_recursive(borrowed_node.right.as_ref().map(Rc::clone));
         }
     }
+
+
+    fn preorder(&self) {
+        self.preorder_recursive(self.root.as_ref().map(Rc::clone));
+        println!();
+    }
+
+
+    fn preorder_recursive(&self, node: Option<Rc<RefCell<Node<T>>>>) {
+        if let Some(node) = node {
+            let borrowed_node = node.borrow();
+            print!("{} ", borrowed_node.value);
+            self.preorder_recursive(borrowed_node.left.as_ref().map(Rc::clone));
+            self.preorder_recursive(borrowed_node.right.as_ref().map(Rc::clone));
+        }
+    }
+
+    fn postorder(&self) {
+        self.postorder_recursive(self.root.as_ref().map(Rc::clone));
+        println!();
+    }
+
+    fn postorder_recursive(&self, node: Option<Rc<RefCell<Node<T>>>>) {
+        if let Some(node) = node {
+            let borrowed_node = node.borrow();
+            self.postorder_recursive(borrowed_node.left.as_ref().map(Rc::clone));
+            self.postorder_recursive(borrowed_node.right.as_ref().map(Rc::clone));
+            print!("{} ", borrowed_node.value);
+        }
+    }
+
+
 }
 
 fn main() {
@@ -166,6 +198,14 @@ fn main() {
     tree.bfs();
     println!("Depth First Search (DFS):");
     tree.dfs();
+
+    
+    println!("Preorder Traversal:");
+    tree.preorder();
+
+    println!("Postorder Traversal:");
+    tree.postorder();
+
 }
 
 
