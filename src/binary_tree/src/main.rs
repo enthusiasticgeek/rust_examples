@@ -164,7 +164,7 @@ fn main() {
     
     println!("Breadth First Search (BFS):");
     tree.bfs();
-    println!("Dept First Search (BFS):");
+    println!("Depth First Search (DFS):");
     tree.dfs();
 }
 
