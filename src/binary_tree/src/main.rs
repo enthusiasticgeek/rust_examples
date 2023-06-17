@@ -102,8 +102,42 @@ impl<T: fmt::Display + PartialOrd + Clone> BinaryTree<T> {
         }
     }
 
+    //breadth first search (bfs)
+    fn bfs(&self) {
+        if let Some(root) = &self.root {
+            let mut queue = std::collections::VecDeque::new();
+            queue.push_back(Rc::clone(root));
 
+            while !queue.is_empty() {
+                let node = queue.pop_front().unwrap();
+                let borrowed_node = node.borrow();
+                print!("{} ", borrowed_node.value);
 
+                if let Some(left) = borrowed_node.left.as_ref() {
+                    queue.push_back(Rc::clone(left));
+                }
+                if let Some(right) = borrowed_node.right.as_ref() {
+                    queue.push_back(Rc::clone(right));
+                }
+            }
+        }
+        println!();
+    }
+
+    //depth first search (bfs)
+    fn dfs(&self) {
+        self.dfs_recursive(self.root.as_ref().map(Rc::clone));
+        println!();
+    }
+
+    fn dfs_recursive(&self, node: Option<Rc<RefCell<Node<T>>>>) {
+        if let Some(node) = node {
+            let borrowed_node = node.borrow();
+            print!("{} ", borrowed_node.value);
+            self.dfs_recursive(borrowed_node.left.as_ref().map(Rc::clone));
+            self.dfs_recursive(borrowed_node.right.as_ref().map(Rc::clone));
+        }
+    }
 }
 
 fn main() {
@@ -127,5 +161,11 @@ fn main() {
     tree.display_inorder();
     println!("Visual Display:");
     tree.display_visual();
+    
+    println!("Breadth First Search (BFS):");
+    tree.bfs();
+    println!("Dept First Search (BFS):");
+    tree.dfs();
 }
+
 
